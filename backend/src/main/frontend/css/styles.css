@@ -1,0 +1,75 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Header styles */
+.navbar {
+    background-color: #333; /* Dark background color */
+}
+
+.navbar-brand {
+    color: #fff;
+    font-size: 24px;
+}
+
+/* Main content container */
+.container {
+    margin-top: 20px;
+}
+
+/* Links and buttons */
+a, button {
+    text-decoration: none;
+}
+
+/* Products list */
+.product-list {
+    list-style: none;
+}
+
+.product-list li {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+/* Cart */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin: 10px 0;
+}
+
+.cart-item a {
+    font-weight: bold;
+}
+
+/* Forms */
+form {
+    margin-top: 10px;
+}
+
+/* Add to cart button */
+.add-to-cart-button {
+    background-color: #007bff; /* Blue color */
+    color: #fff; /* Text color */
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* Remove from cart button */
+.remove-from-cart-button {
+    background-color: #dc3545; /* Red color */
+    color: #fff; /* Text color */
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* Create product form */
+.create-product-form {
+    margin-top: 20px;
+}

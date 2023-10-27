@@ -10,21 +10,17 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/products")
 public class ProductListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Implement logic to fetch and display a list of all products
-        // Check user authorization using AuthorizationUtil
-        // Forward to productList.jsp
-//        if(AuthorizationUtil.isUserAuthorized(request)) {
-//            List<Product> products = Storefront.getAllProducts();
-//            request.setAttribute("products", products);
-//            request.getRequestDispatcher("/productList.jsp").forward(request, response);
-//        } else {
-//            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized access");
-//        }
+        Storefront storefront = new Storefront();
+        List<Product> products = storefront.getAllProducts();
+
+        request.setAttribute("products", products);
+        request.getRequestDispatcher("/product_list.jsp").forward(request, response);
     }
 }

@@ -49,6 +49,9 @@ public class Storefront {
         throw new ProductNotFoundException("Product with SKU " + sku + " not found.");
     }
 
+    public List<Product> getAllProducts() {
+        return productCatalog;
+    }
 
     public Product getProduct(String sku) throws ProductNotFoundException {
         // Find and return the product with the given SKU
@@ -69,24 +72,26 @@ public class Storefront {
         throw new ProductNotFoundException("Product with slug " + slug + " not found.");
     }
 
-    public List<Product> getCart(String user) {
-        userCarts.putIfAbsent(user, new Cart());
-        return userCarts.get(user).getProducts();
+    public List<Product> getCart(User user) {
+        userCarts.putIfAbsent(user.getUsername(), new Cart());
+        return userCarts.get(user.getUsername()).getProducts();
     }
 
-    public void addProductToCart(String user, String sku) throws ProductNotFoundException {
+    public void addProductToCart(User user, String sku) throws ProductNotFoundException {
         Product productToAdd = getProduct(sku);
-        Cart cart = userCarts.get(user);
+        Cart cart = userCarts.get(user.getUsername());
         if (cart == null) {
             cart = new Cart();
-            userCarts.put(user, cart);
-        } else {
+            userCarts.put(String.valueOf(user), cart);
+            cart.addProduct(productToAdd);
+        }
+        else {
             throw new IllegalArgumentException("Product not found");
         }
     }
 
-    public void removeProductFromCart(String user, String sku) throws ProductNotFoundException, CartNotFoundException {
-        Cart cart = userCarts.get(user);
+    public void removeProductFromCart(User user, String sku) throws ProductNotFoundException, CartNotFoundException {
+        Cart cart = userCarts.get(user.getUsername());
         if (cart == null) {
             throw new CartNotFoundException("There is no cart");
         }
